@@ -18,16 +18,10 @@ blocks:
             - go get ./...
             - go test ./...
             - go build -v .
-  - name: Test
-    task:
-      jobs:
-        - name: Unit Tests
-          commands:
-            - go test ./...
   - name: Build
     task:
       jobs:
         - name: Build
           commands:
-            - go build -v -o go-gin-app
-            - artifact push project --force go-gin-app
+            - go build -v -o semaphore-demo-go-gin-zwei
+            - artifact push project --force semaphore-demo-go-gin-zwei

@@ -5,10 +5,10 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: Test
+  - name: Install dependencies
     task:
       jobs:
-        - name: go test
+        - name: Install
           commands:
             - sem-version go 1.18
             - export GO111MODULE=on
@@ -18,3 +18,16 @@ blocks:
             - go get ./...
             - go test ./...
             - go build -v .
+  - name: Test
+    task:
+      jobs:
+        - name: Unit Tests
+          commands:
+            - go test ./...
+  - name: Build
+    task:
+      jobs:
+        - name: Build
+          commands:
+            - go build -v -o go-gin-app
+            - artifact push project --force go-gin-app

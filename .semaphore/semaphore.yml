@@ -23,5 +23,8 @@ blocks:
       jobs:
         - name: Build
           commands:
+            - go mod init semaphore-demo-go-gin-zwei
+            - cd semaphore-demo-go-gin-zwei
+            - go get .
             - go build -v -o semaphore-demo-go-gin-zwei
             - artifact push project --force semaphore-demo-go-gin-zwei
